@@ -1,0 +1,7 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+.nav-item a{text-decoration: none;border-right:1px dotted white;display:block; transition:1s all;}
+ul li:last-child a{border-right-style:none;}
+.nav-item a:hover,.nav-item a.active:hover{color:rgb(200, 255, 0);transform:scale(1.05)}
+.nav-item{background-color: rgb(3, 3, 51);padding:0.5rem 0.2rem;}
+.form-control span{color:red;font-size: 1rem;}
+.msg{color:red;font-size: 2rem;}
