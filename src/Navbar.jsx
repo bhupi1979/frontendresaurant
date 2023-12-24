@@ -12,7 +12,7 @@ export function Navbar(){
         <>
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-white">
   <div className="container-fluid">
-    <a className="navbar-brand" href="#"><img className='border border-2 rounded-5' src='https://frontendresaurant.vercel.app/src/components/img/logo1.png' alt="image" width={'70px'} height={'70px'}/></a>
+    <a className="navbar-brand" href="#"><img className='border border-2 rounded-5' src='/src/components/img/logo1.png' alt="image" width={'70px'} height={'70px'}/></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
