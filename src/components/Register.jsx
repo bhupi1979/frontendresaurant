@@ -85,6 +85,7 @@ export function Register(){
         let result= await fetch('https://idyllic-cobbler-8dadc0.netlify.app/register',
         {
             method:'post',
+            mode: 'no-cors',
             body:JSON.stringify(formdata),
             headers:{ 'Content-Type':'Application/json'}
         })

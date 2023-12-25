@@ -29,6 +29,7 @@ export function Login(){
       let result= await fetch('https://idyllic-cobbler-8dadc0.netlify.app/login',
       {
           method:'post',
+          mode: 'no-cors',
           body:JSON.stringify(formdata),
           headers:{ 'Content-Type':'Application/json'}
       })
