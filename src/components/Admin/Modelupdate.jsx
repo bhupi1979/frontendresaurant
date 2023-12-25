@@ -41,24 +41,27 @@ export function Modelupdate(props){
         fdata1.append('editrent', editrent||props.updatedata.rent);
         fdata1.append('editdescp', editdescp||props.updatedata.descp);
         alert("this is update alert"+editname+edittnumber+editrent+editdescp)
-           let result1= await fetch("http://127.0.0.1:8000/api/updateinfra/"+props.updatedata.id + "?_method=PUT",
+           let result1= await fetch("https://backendrestaurant-i5ir.onrender.com/"+props.updatedata._id + "?_method=PUT",
            {
-               method:"POST",
-              
-              body:fdata1
+               method:"put",
+              body:JSON.stringify({editname,edittnumber,editrent,editdescp}),
+               headers:
+               {
+                   "Content-Type":"Application/json"
+               }
            })
            console.warn(result1)
            alert(result1.status)
            //result1= await result1.json()
           // console.warn(result1)
     
-           window.location.reload()
+          
            //document.getElementById('pformedit').reset()
-        //    setmsg2("Data has been updated succeddfully")
-        //            setTimeout(() => {
-        //            setmsg2("")
-                   
-        //             }, 5000)
+        setmsg2("Data has been updated succeddfully")
+            setTimeout(() => {
+                  setmsg2("")
+                  window.location.reload()
+                     }, 3000)
            
               }
    
