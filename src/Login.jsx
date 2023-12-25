@@ -26,7 +26,7 @@ export function Login(){
 
     if (validateForm()) {
       // Perform form submission logic here
-      let result= await fetch('https://backendrestaurant.vercel.app/login',
+      let result= await fetch('https://658926f344a5bcb94db4e8ed--idyllic-cobbler-8dadc0.netlify.app/login',
       {
           method:'post',
           body:JSON.stringify(formdata),
