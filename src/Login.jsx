@@ -26,7 +26,7 @@ export function Login(){
 
     if (validateForm()) {
       // Perform form submission logic here
-      let result= await fetch('https://6589341c38826abda7269cd8--idyllic-cobbler-8dadc0.netlify.app/login',
+      let result= await fetch('https://backendrestaurant-i5ir.onrender.com/login',
       {
           method:'post',
           mode: 'no-cors',
