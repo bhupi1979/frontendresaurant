@@ -82,7 +82,7 @@ export function Register(){
         e.preventDefault();
 
         if (validateForm()) {
-        let result= await fetch('https://idyllic-cobbler-8dadc0.netlify.app/register',
+        let result= await fetch('https://6589341c38826abda7269cd8--idyllic-cobbler-8dadc0.netlify.app/register',
         {
             method:'post',
             mode: 'no-cors',
