@@ -28,10 +28,11 @@ const[descp,setdescp]=useState("")
         fdata.append('descp',descp)
         fdata.append('tnumber',tnumber)
         fdata.append('rent',rent)
-           let result= await fetch("http://127.0.0.1:8000/api/infraadd",
+           let result= await fetch("https://backendrestaurant-i5ir.onrender.com/addinfra",
            {
                method:"POST",
-              body:fdata
+               body:JSON.stringify(formdata),
+            headers:{ 'Content-Type':'Application/json'}
            })
            
        
@@ -63,7 +64,7 @@ const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-tog
     });
 //**********javascrp for tooltip ends her */
 
-        let result=  await fetch("http://127.0.0.1:8000/api/showinfra",
+        let result=  await fetch("https://backendrestaurant-i5ir.onrender.com/infra",
         {
         method:"GET",
         headers:
