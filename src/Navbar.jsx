@@ -22,12 +22,17 @@ export function Navbar(){
         <NavLink to='/home'>  <a className="nav-link active" aria-current="page" >Home</a></NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/addproduct"><a className="nav-link" >AddProduct</a></NavLink>
+          <NavLink to="/addinfra"><a className="nav-link" >AddInfra</a></NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/updateproduct"><a className="nav-link" href="#">UpdateProduct</a></NavLink>
+          <NavLink to="/addproduct"><a className="nav-link" href="#">AddProduct-Category</a></NavLink>
         </li>
-       
+        <li className="nav-item">
+          <NavLink to="/addproductdetail"><a className="nav-link" href="#">AddProduct-Detail</a></NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/restaurantmanagement"><a className="nav-link" href="#">Restaurant-Management</a></NavLink>
+        </li>
         <li className="nav-item" onClick={exit1}>
           <NavLink to="/Logout"><a className="nav-link" href="#">Log-Out</a></NavLink>
         </li>
