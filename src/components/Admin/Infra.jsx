@@ -255,6 +255,24 @@ const validateForm = () => {
         return isValid
 }
 /********validatio ends herer */
+const tableCustomStyles = {
+  headRow: {
+    style: {
+      color:'#000',
+      backgroundColor: '#fff'
+    },
+  },
+  rows: {
+    style: {
+      color: "red",
+      backgroundColor: "yellow"
+    },
+    stripedStyle: {
+      color: "maroon",
+      backgroundColor: "white"
+    }
+  }
+}
     return(
         <>
     
@@ -288,7 +306,7 @@ const validateForm = () => {
                     <button onClick={handlePrint1} className="p-1">PRint</button>
                         {data
                         ?
-                        <div style={{ display: 'block' }} ref={componentRef} >
+                        <div style={{ display: 'block',border:'2px solid black' }} ref={componentRef} >
       
       <DataTable
         
@@ -306,6 +324,7 @@ const validateForm = () => {
       placeholder="Search..."
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
+      customStyles={tableCustomStyles}
     />
         }
         
