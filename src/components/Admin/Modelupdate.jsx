@@ -57,7 +57,7 @@ export function Modelupdate(props){
     
           
            //document.getElementById('pformedit').reset()
-        setmsg2("Data has been updated succeddfully")
+        setmsg2("Data has been updated successfully")
             setTimeout(() => {
                   setmsg2("")
                   window.location.reload()
