@@ -34,7 +34,7 @@ export function Infra()
                             let result= await fetch("https://backendrestaurant-i5ir.onrender.com/addinfra",
                             {
                                 method:"POST",
-                                body:JSON.stringify(fdata),
+                                body:fdata,
                                 headers:{ 'Content-Type':'Application/json'}
                             })
                             
