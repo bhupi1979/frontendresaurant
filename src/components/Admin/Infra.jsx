@@ -185,12 +185,12 @@ export function Infra()
     //console.log(`Delete item with ID ${id}`);
    let cs1=confirm("Are YOu sure to delete the row")
   if(cs1){
-    let result=await fetch("http://127.0.0.1:8000/api/deleteinfra/"+id,
+    let result=await fetch("https://backendrestaurant-i5ir.onrender.com/infra/"+id,
   {
-  method:"GET",
+  method:"delete",
   headers:
   {
-      "Content-Type":"application/json"
+      "Content-Type":"Application/json"
   }
 })
 console.log(result)
