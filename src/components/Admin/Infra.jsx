@@ -25,24 +25,24 @@ export function Infra()
             if (validateForm()) {
                             alert(name+descp)
                             
-                            const fdata=new FormData()
+                            const formdata={name:name,tnumber:tnumber,rent:rent,descp:descp}
                             
-                            fdata.append('name',name)
-                            fdata.append('descp',descp)
-                            fdata.append('tnumber',tnumber)
-                            fdata.append('rent',rent)
+                            // fdata.append('name',name)
+                            // fdata.append('descp',descp)
+                            // fdata.append('tnumber',tnumber)
+                            // fdata.append('rent',rent)
                             let result= await fetch("https://backendrestaurant-i5ir.onrender.com/addinfra",
                             {
-                                method:"post",
-                                mode:'no-cors',
-                                body:JSON.stringify(fdata),
+                                method:'post',
+            
+                                body:JSON.stringify(formdata),
                                 headers:{ 'Content-Type':'Application/json'}
                             })
                             
                         
                             console.warn(result)
                             alert(result.status)
-                            if(result.status==201){
+                            if(result.status==200){
                             setname("")
                             settnumber("")
                             setrent("")
@@ -51,10 +51,10 @@ export function Infra()
                             setmsg2("Data has been uploaded succeddfully")
                                     setTimeout(() => {
                                     setmsg2("")
-                                    
-                                    }, 1000)
-                                    }
                                     window.location.reload()
+                                    }, 2000)
+                                    }
+                                   
                                 }
              }
 
