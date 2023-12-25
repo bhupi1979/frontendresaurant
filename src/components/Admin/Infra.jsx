@@ -8,61 +8,65 @@ import { useReactToPrint } from "react-to-print";
 import { Modelupdate } from "./Modelupdate";
 import { Navbar } from "../../Navbar";
 
-export function Infra(){
+export function Infra()
+{       const [errors, setErrors] = useState({});
   
-    const [searchQuery, setSearchQuery] = useState('');
-    const[data,setresult]=useState([])
-const[msg2,setmsg2]=useState("")
-const[updatedata,setupdatedata]=useState([])
-const [name,setname]=useState("")
-const [tnumber,settnumber]=useState("")
-const [rent,setrent]=useState("")
-const[descp,setdescp]=useState("")
-    async function addinfra(){
-//const componentRef=useRef()
-        alert(name+descp)
-        
-        const fdata=new FormData()
-        
-        fdata.append('name',name)
-        fdata.append('descp',descp)
-        fdata.append('tnumber',tnumber)
-        fdata.append('rent',rent)
-           let result= await fetch("https://backendrestaurant-i5ir.onrender.com/addinfra",
-           {
-               method:"POST",
-               body:JSON.stringify(formdata),
-            headers:{ 'Content-Type':'Application/json'}
-           })
-           
-       
-           console.warn(result)
-           alert(result.status)
-           if(result.status==201){
-           setname("")
-           settnumber("")
-           setrent("")
-           setdescp("")
-           
-           setmsg2("Data has been uploaded succeddfully")
-                   setTimeout(() => {
-                   setmsg2("")
-                   
-                   }, 1000)
-                }
-                window.location.reload()
+            const [searchQuery, setSearchQuery] = useState('');
+            const[data,setresult]=useState([])
+        const[msg2,setmsg2]=useState("")
+        const[updatedata,setupdatedata]=useState([])
+        const [name,setname]=useState("")
+        const [tnumber,settnumber]=useState("")
+        const [rent,setrent]=useState("")
+        const[descp,setdescp]=useState("")
+            async function addinfra()
+            {
+        //const componentRef=useRef()
+            if (validateForm()) {
+                            alert(name+descp)
+                            
+                            const fdata=new FormData()
+                            
+                            fdata.append('name',name)
+                            fdata.append('descp',descp)
+                            fdata.append('tnumber',tnumber)
+                            fdata.append('rent',rent)
+                            let result= await fetch("https://backendrestaurant-i5ir.onrender.com/addinfra",
+                            {
+                                method:"POST",
+                                body:JSON.stringify(fdata),
+                                headers:{ 'Content-Type':'Application/json'}
+                            })
+                            
+                        
+                            console.warn(result)
+                            alert(result.status)
+                            if(result.status==201){
+                            setname("")
+                            settnumber("")
+                            setrent("")
+                            setdescp("")
+                            
+                            setmsg2("Data has been uploaded succeddfully")
+                                    setTimeout(() => {
+                                    setmsg2("")
+                                    
+                                    }, 1000)
+                                    }
+                                    window.location.reload()
+                                }
              }
 
 
       //*****************for listion of infra list section of get method of table data */       
-      useEffect(()=>{const asyncFn = async () => {  
+        useEffect(()=>{const asyncFn = async () => {  
 
-//javscript for tooltip********//
-const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map((tooltipTriggerEl) => {
-      return new window.bootstrap.Tooltip(tooltipTriggerEl);
-    });
-//**********javascrp for tooltip ends her */
+            //javscript for tooltip********//
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                tooltipTriggerList.map((tooltipTriggerEl) => {
+                return new window.bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            //**********javascrp for tooltip ends her */
 
         let result=  await fetch("https://backendrestaurant-i5ir.onrender.com/infra",
         {
@@ -83,15 +87,17 @@ const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-tog
        
        
      },[])
+     /******for fileter function */
      const filteredData = data.filter(item =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-  
+      /********for filter */
+  //**********column for datatable */
       const columns = [
         {
           name: 'ID',
-          selector: (row)=>row.id,
-          sortable: true,
+          cell:(row,i=1)=>(++i)
+          
         },
         {
           name: 'Name',
@@ -131,6 +137,8 @@ const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-tog
             
           }
       ];
+      /***********columns for reactdatatblecomponnet */
+      /*********for print only */
       const componentRef = useRef(null);
       //end of listing data************
       //alert(componentRef)
@@ -138,11 +146,9 @@ const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-tog
         
         content: () =>componentRef.current
       });
-/************ */
+/**********end of print only** */
 
-//**************** for pdf*/
-
-
+//**************** for pdf ********generate table*/
   const handlePrint= useReactToPrint({
     content: () => componentRef.current,
     pageStyle: `
@@ -169,6 +175,10 @@ const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-tog
       pdf.save('exported.pdf');
     },
   });
+//*********end of print table */
+
+  /**************delete operation startss here */
+  /*****************************************/
   const handleDelete = async (id) => {
     // Implement your delete logic here
     //console.log(`Delete item with ID ${id}`);
@@ -187,9 +197,10 @@ window.location.reload()
 }
 
   };
-/*********MODAL */
+/*********Delete Operation */
 
-/***********single row edit */
+/***********single row edit function*******/
+/****************************** */
 function setEditId(id){
 //alert('in edit click id'+ id +updatedata)
 const asyncFn1 = async () =>  { 
@@ -213,12 +224,39 @@ console.log(result)
 }
 asyncFn1()
 }
-  
-
+  //*********single edit row ends */
+/****************************** */
 /********** */
+/***********VALIDATION */
+const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+
+    // Name Validation
+    if (!name.trim()) {
+      isValid = false;
+      newErrors.name = 'Name is required';
+    }
+    if (!tnumber.trim()) {
+        isValid = false;
+        newErrors.tnumber = 'tnumber is required';
+      }
+      if (!rent.trim()) {
+        isValid = false;
+        newErrors.rent = 'rent is required';
+      }
+      
+      if (!descp.trim()) {
+        isValid = false;
+        newErrors.descp = 'descp is required';
+      }
+    setErrors(newErrors)
+        return isValid
+}
+/********validatio ends herer */
     return(
         <>
-            <Navbar/>
+    
             
             <div className="container">
                 <div className="row">
@@ -228,9 +266,14 @@ asyncFn1()
                         
                     <form className="form-control" id="pform" method="post" onSubmit={(e)=>{e.preventDefault()}}>
                         <input className="form-control mt-1" type="text" name="name" value={name} onChange={(e)=>{setname(e.target.value)}} placeholder="Enter name"></input>
+                        {errors.name && <span>{errors.name}</span>}
                         <input className="form-control mt-1" type="number" name="tnumber" value={tnumber} onChange={(e)=>{settnumber(e.target.value)}} placeholder="Enter Number"></input>
-                        <input className="form-control mt-1" type="text" name="rent" value={rent} onChange={(e)=>{setrent(e.target.value)}} placeholder="Enter rent"></input>
+                        {errors.tnumber && <span>{errors.tnumber}</span>}
+                        <input className="form-control mt-1" type="number" name="rent" value={rent} onChange={(e)=>{setrent(e.target.value)}} placeholder="Enter rent"></input>
+                        {errors.rent && <span>{errors.rent}</span>}
                         <textarea className="form-control mt-1 mb-2" name="descp" value={descp} onChange={(e)=>{setdescp(e.target.value)}} placeholder="Enter Description"></textarea>
+                        {errors.descp && <span>{errors.descp}</span>}
+                        <br/>
                         <button type="submit" className="btn btn-primary" onClick={addinfra}>Add-infra</button>
                     </form>
                     </div>
