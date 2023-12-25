@@ -85,7 +85,13 @@ export function Infra()
     
      }
      asyncFn();
-       
+       if(sessionStorage.getItem('edit')==1)
+       {setmsg2("Data updated successfuly")
+        setTimeout(() => {
+          setmsg2("")
+          sessionStorage.setItem('edit',0)
+        }, 2000);
+       }
        
      },[])
      /******for fileter function */
@@ -203,7 +209,7 @@ window.location.reload()
 /***********single row edit function*******/
 /****************************** */
 function setEditId(id){
-//alert('in edit click id'+ id +updatedata)
+alert('in edit click id'+ id )
 const asyncFn1 = async () =>  { 
   // alert('onetwoeth**'+id)
    let result=  await fetch("https://backendrestaurant-i5ir.onrender.com/singleinfra/"+id,
@@ -216,7 +222,7 @@ const asyncFn1 = async () =>  {
 })
 result= await result.json()
 
-//alert(result.name)
+alert(result.name)
 setupdatedata(result)
 //alert(result123.name)
 console.warn('result',result)

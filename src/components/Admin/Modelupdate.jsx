@@ -29,29 +29,38 @@ export function Modelupdate(props){
         // if(!edittnumber||edittnumber==undefined)setedittnumber(props.updatedata.tnumber)
         // if(!editdescp||editdescp==undefined)seteditdescp(props.updatedata.descp)
         // if(!editrent||editrent==undefined) seteditrent(props.updatedata.rent)
-        const fdata1=new FormData()
+        const fdata1={
+                name:editname||props.updatedata.name,
+                tnumber:edittnumber||props.updatedata.tnumber,
+                rent:editrent||props.updatedata.rent,
+                descp:editdescp||props.updatedata.descp,
+                  }
         // if(editname===null || editname===undefined){fdata1.append('editname',props.updatedata.name)} else {fdata1.append('editname',editname)}
         // if(edittnumber===null|| editname===undefined) {fdata1.append('edittnumber',props.updatedata.tnumber)}else{ fdata1.append('edittnumber',edittnumber)}
 
         // if(editrent===null|| editrent===undefined){fdata1.append('editrent',props.updatedata.rent)}else{ fdata1.append('editrent',editrent)}
 
         // if(editdescp===null|| editdescp===undefined){ fdata1.append('editdescp',props.updatedata.editdescp)} else{ fdata1.append('editdescp',editdescp)}
-        fdata1.append('editname',editname||props.updatedata.name);
-        fdata1.append('edittnumber',edittnumber||props.updatedata.tnumber);
-        fdata1.append('editrent', editrent||props.updatedata.rent);
-        fdata1.append('editdescp', editdescp||props.updatedata.descp);
+        // fdata1.append('editname',editname||props.updatedata.name);
+        // fdata1.append('edittnumber',edittnumber||props.updatedata.tnumber);
+        // fdata1.append('editrent', editrent||props.updatedata.rent);
+        // fdata1.append('editdescp', editdescp||props.updatedata.descp);
         alert("this is update alert"+editname+edittnumber+editrent+editdescp)
-           let result1= await fetch("https://backendrestaurant-i5ir.onrender.com/"+props.updatedata._id + "?_method=PUT",
+           let result1= await fetch("https://backendrestaurant-i5ir.onrender.com/infra"+props.updatedata._id,
            {
                method:"put",
-              body:JSON.stringify({editname,edittnumber,editrent,editdescp}),
+              body:JSON.stringify(fdata1),
                headers:
                {
                    "Content-Type":"Application/json"
                }
            })
            console.warn(result1)
-           alert(result1.status)
+           if(result1.status){
+            sessionStorage.setItem('edit',1)
+            window.location.reload()
+           }
+           
            //result1= await result1.json()
           // console.warn(result1)
     
@@ -60,7 +69,7 @@ export function Modelupdate(props){
         setmsg2("Data has been updated successfully")
             setTimeout(() => {
                   setmsg2("")
-                  window.location.reload()
+                 
                      }, 3000)
            
               }
