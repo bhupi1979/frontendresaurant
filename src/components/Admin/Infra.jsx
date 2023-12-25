@@ -263,7 +263,7 @@ const validateForm = () => {
                 <div className="row">
                     <div className="col-lg-5">
                         <h1>ADD INFRA</h1>
-                        <h3 >{msg2}</h3>
+                        <h3 style={{color:'red',background:'yellow'}} className="text-center">{msg2}</h3>
                         
                     <form className="form-control" id="pform" method="post" onSubmit={(e)=>{e.preventDefault()}}>
                         <input className="form-control mt-1" type="text" name="name" value={name} onChange={(e)=>{setname(e.target.value)}} placeholder="Enter name"></input>
@@ -279,13 +279,13 @@ const validateForm = () => {
                     </form>
                     </div>
                     <div className="col-lg-7">
-                        <h1 className="text-center">The Infra Detail</h1>
+                        <h1 className="text-center p-1">The INFRA DETAIL</h1>
                         <CSVLink data={data} filename={"data.csv"}>
-                        <button>ExportCSV</button>
+                        <button className="p-1">ExportCSV</button>
                     </CSVLink>
-                    <button onClick={handlePrint}>ExportPdf</button>
+                    <button onClick={handlePrint} className="p-1">ExportPdf</button>
 
-                    <button onClick={handlePrint1}>PRint</button>
+                    <button onClick={handlePrint1} className="p-1">PRint</button>
                         {data
                         ?
                         <div style={{ display: 'block' }} ref={componentRef} >
