@@ -33,8 +33,9 @@ export function Infra()
                             fdata.append('rent',rent)
                             let result= await fetch("https://backendrestaurant-i5ir.onrender.com/addinfra",
                             {
-                                method:"POST",
-                                body:fdata,
+                                method:"post",
+                                mode:'no-cors',
+                                body:JSON.stringify(fdata),
                                 headers:{ 'Content-Type':'Application/json'}
                             })
                             
