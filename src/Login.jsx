@@ -29,7 +29,7 @@ export function Login(){
       let result= await fetch('https://backendrestaurant-i5ir.onrender.com/login',
       {
           method:'post',
-          mode: 'no-cors',
+          
           body:JSON.stringify(formdata),
           headers:{ 'Content-Type':'Application/json'}
       })

@@ -85,7 +85,7 @@ export function Register(){
         let result= await fetch('https://backendrestaurant-i5ir.onrender.com/register',
         {
             method:'post',
-            mode: 'no-cors',
+            
             body:JSON.stringify(formdata),
             headers:{ 'Content-Type':'Application/json'}
         })
