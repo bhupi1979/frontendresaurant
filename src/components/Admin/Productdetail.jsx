@@ -24,20 +24,20 @@ const [errors, setErrors] = useState({});
 async function addproductcategoryitem(){
     
             
-            const fdata={name:name,price:price,imag:image,descp:descp,pcategory:pcategory}
-            
-            // fdata.append('name',name)
-            // fdata.append('price',price)
-            // fdata.append('img',img)
-            // fdata.append('descp',descp)
-            // fdata.append('pcategory',pcategory)
+            //const fdata={name:name,price:price,image:image,descp:descp,pcategory:pcategory}
+            const fdata=new FormData()
+            fdata.append('name',name)
+             fdata.append('price',price)
+             fdata.append('image',image)
+             fdata.append('descp',descp)
+             fdata.append('pcategory',pcategory)
            
                let result= await fetch("https://backendrestaurant-i5ir.onrender.com/productdetail",
                {
                 method:'post',
             
-                body:JSON.stringify(fdata),
-                headers:{ 'Content-Type':'Application/json'}
+                body:fdata
+
                })
                
            
@@ -117,8 +117,7 @@ asyncFn1();
           const columns = [
             {
               name: 'ID',
-              selector: (row)=>row.id,
-              sortable: true,
+              cell:(row,i=1)=>(++i)
             },
             {
               name: 'Name',
@@ -137,7 +136,7 @@ asyncFn1();
               },
               {
                 name: 'Image',
-                cell:(row)=>(<img src={row.img} alt="img" width={'100rem'} height={'100rem'}/>),
+                cell:(row)=>(<img src={`https://backendrestaurant-i5ir.onrender.com/uploads/${row.image}`} alt="img" width={'100rem'} height={'100rem'}/>),
                 sortable: true,
               },
             {
