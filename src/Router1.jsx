@@ -7,6 +7,7 @@ import { Login } from "./Login";
 import { Infra } from "./components/Admin/Infra";
 
 import { Productcategory } from "./components/Admin/Productcategory";
+import { Productcategoryitem } from "./components/Admin/Productdetail";
 
 
 export function Router1(){
@@ -17,7 +18,7 @@ export function Router1(){
        <Route path="/addinfra" element={<Infra/>}></Route>
        
        <Route path="/addproduct" element={<Productcategory/>}></Route>
-       
+       <Route path="/productdetail" element={<Productcategoryitem/>}></Route>
        <Route path="/register" element={<Register/>}></Route> 
        <Route path="/login" element={<Login/>}></Route> 
             </Routes> 

@@ -25,10 +25,10 @@ export function Navbar(){
           <NavLink to="/addinfra"><a className="nav-link" >AddInfra</a></NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/addproduct"><a className="nav-link" href="#">AddProduct-Category</a></NavLink>
+          <NavLink to="/addproduct"><a className="nav-link" href="#">Product-Category</a></NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/addproductdetail"><a className="nav-link" href="#">AddProduct-Detail</a></NavLink>
+          <NavLink to="/productdetail"><a className="nav-link" href="#">Product-Detail</a></NavLink>
         </li>
         <li className="nav-item">
           <NavLink to="/restaurantmanagement"><a className="nav-link" href="#">Restaurant-Management</a></NavLink>
