@@ -40,10 +40,11 @@ export function Modelupdateproductcategory(props){
         // fdata1.append('editname',editname||props.updatedata.name);
         // fdata1.append('editslug',editslug||props.updatedata.slug);
         
-        alert("this is update alert"+editname+editslug+props.updatedata._id)
+        alert("this is update alert "+props.updatedata._id)
            let result1= await fetch("https://backendrestaurant-i5ir.onrender.com/productcategory/"+props.updatedata._id,
            {
             method:"put",
+        
             body:JSON.stringify(fdata1),
             headers:
             {

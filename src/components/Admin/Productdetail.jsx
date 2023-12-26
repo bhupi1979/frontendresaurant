@@ -32,7 +32,7 @@ async function addproductcategoryitem(){
              fdata.append('descp',descp)
              fdata.append('pcategory',pcategory)
            
-               let result= await fetch("http://localhost:5000/productdetail",
+               let result= await fetch("https://backendrestaurant-i5ir.onrender.com/productdetail",
                {
                 method:'post',
             
@@ -136,7 +136,7 @@ asyncFn1();
               },
               {
                 name: 'Image',
-                cell:(row)=>(<img src={`http://localhost:5000/uploads/${row.image}`} alt="img" width={'100rem'} height={'100rem'}/>),
+                cell:(row)=>(<img src={`https://backendrestaurant-i5ir.onrender.com/uploads/${row.image}`} alt="img" width={'100rem'} height={'100rem'}/>),
                 sortable: true,
               },
             {
@@ -200,9 +200,9 @@ asyncFn1();
         //console.log(`Delete item with ID ${id}`);
        let cs1=confirm("Are YOu sure to delete the row")
       if(cs1){
-        let result=await fetch("http://127.0.0.1:8000/api/deletepitem/"+id,
+        let result=await fetch("https://backendrestaurant-i5ir.onrender.com/productdetail/"+id,
       {
-      method:"GET",
+      method:"delete",
       headers:
       {
           "Content-Type":"application/json"
