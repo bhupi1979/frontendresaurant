@@ -8,6 +8,7 @@ import DataTable from "react-data-table-component";
 import { Modelupdateproductcategory } from "./Modelupdateproductcategory";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'
+import { Modelpitem } from "./Modelproductdetail";
 //import { Modelpitem } from "./Modelpitem";
 export function Productcategoryitem(){
     const [searchQuery, setSearchQuery] = useState('');
@@ -120,6 +121,11 @@ asyncFn1();
               cell:(row,i=1)=>(++i)
             },
             {
+              name: 'Product-Category',
+              selector: (row)=>row.pcategory,
+              sortable: true,
+            },
+            {
               name: 'Name',
               selector: (row)=>row.name,
               sortable: true,
@@ -220,7 +226,7 @@ asyncFn1();
     //alert('in edit click id'+ id +updatedata)
     const asyncFn1 = async () =>  { 
       // alert('onetwoeth**'+id)
-       let result=  await fetch("http://127.0.0.1:8000/api/singlepitem/"+id,
+       let result=  await fetch("https://backendrestaurant-i5ir.onrender.com/singleproductdetail/"+id,
        {
        method:"GET",
        headers:
@@ -306,7 +312,7 @@ asyncFn1();
 
 
 
- {/* <Modelpitem updatedata1={updatedata}/>  */}
+ { <Modelpitem updatedata1={updatedata}/>  }
         </>
     )
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { TailSpin } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 
 export function Login(){
@@ -9,6 +10,7 @@ export function Login(){
     })
     const [errors, setErrors] = useState({});
     const[msg,setmsg]=useState("")
+    const [isloading,setisloading]=useState(false)
     const history=useNavigate()
     useEffect(()=>{
       if(sessionStorage.getItem('mainsession'))
@@ -26,6 +28,7 @@ export function Login(){
 
     if (validateForm()) {
       // Perform form submission logic here
+      setisloading(true)
       let result= await fetch('https://backendrestaurant-i5ir.onrender.com/login',
       {
           method:'post',
@@ -34,12 +37,13 @@ export function Login(){
           headers:{ 'Content-Type':'Application/json'}
       })
       result=await result.json()
-      alert(result.resultuser)
+      //alert(result.resultuser)
       if(result.resultuser)
       {
       console.log('Form is valid. Submitting:', formdata);
       sessionStorage.setItem('mainsession',1)
       sessionStorage.setItem('user',formdata.name)
+     
       history('/home')
       }
       else{
@@ -96,7 +100,7 @@ export function Login(){
   }
     return(
      <>
-     
+     <div style={{opacity:isloading?"0.2":"1"}} >
          <h1 className="text-center">welcome to Login page</h1>
          <div className="container">
          <div className="row">
@@ -117,6 +121,18 @@ export function Login(){
          </div>
          </div>
          </div>
+         </div>
+        { isloading&&<TailSpin 
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="tail-spin-loading"
+      radius="1"
+      wrapperStyle={{}}
+      wrapperClass="spinner"
+      visible={true}
+         />
+        }
      </>
     )
 }
