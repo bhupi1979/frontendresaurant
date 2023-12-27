@@ -263,7 +263,7 @@ asyncFn1();
  
                     <form className="form-control" id="pform" method="post" onSubmit={(e)=>{e.preventDefault()}}>
                     <select className="w-100 mt-1" name="pcategory"  onChange={(e)=>{setpcategory(e.target.value)}} ><option value={0}>SELECT-CATEGORY</option>SELECT-CATEGORY 
-                    {datapitem.map((item,id)=>(<option value={item.id}>{item.name}</option>))}
+                    {datapitem.map((item,id)=>(<option value={item._id}>{item.name}</option>))}
                     </select>
                         <input className="form-control mt-1" type="text" name="name"  onChange={(e)=>{setname(e.target.value)}}  placeholder="Enter name"></input>
                         <input className="form-control mt-1" type="number" id="price" name="price"  onChange={(e)=>{setprice(e.target.value) }} placeholder="Enter Price"></input>

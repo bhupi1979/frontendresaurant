@@ -53,7 +53,7 @@ export function Modelpitem(props){
               body:fdata1
            })
            console.warn(result1)
-           //alert(result1)
+           
            alert(result1.status)
           
     
