@@ -50,7 +50,11 @@ export function Modelpitem(props){
            {
                method:"PUT",
               
-              body:fdata1
+              body:fdata1,
+              headers:
+            {
+                "Content-Type":"multipart/form-data"
+            }
            })
            console.warn(result1)
            
