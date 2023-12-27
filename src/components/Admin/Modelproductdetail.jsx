@@ -45,10 +45,10 @@ export function Modelpitem(props){
         fdata1.append('editimg',editimg||props.updatedata1.image);
         fdata1.append('editdescp',editdescp||props.updatedata1.descp);
         fdata1.append('editpcategory',editpcategory ||props.updatedata1.pcategory)
-        //alert("this is update alert"+editname+editprice+editpcategory+editdescp +props.updatedata1.id)
+        alert("this is update alert"+props.updatedata1._id)
            let result1= await fetch("https://backendrestaurant-i5ir.onrender.com/productdetail/"+props.updatedata1._id,
            {
-               method:"put",
+               method:"PUT",
               
               body:fdata1
            })
