@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
 export function Modelpitem(props){
@@ -46,16 +47,17 @@ export function Modelpitem(props){
         fdata1.append('editdescp',editdescp||props.updatedata1.descp);
         fdata1.append('editpcategory',editpcategory ||props.updatedata1.pcategory)
         alert("this is update alert"+props.updatedata1._id)
-           let result1= await fetch(`https://backendrestaurant-i5ir.onrender.com/productdetail/${props.updatedata1._id}`,
-           {
-               method:"PUT",
+           
+        
+        let result1= await axios.put(`https://backendrestaurant-i5ir.onrender.com/productdetail/${props.updatedata1._id}`,
+        fdata1
+          //  {
+          //      method:"PUT",
               
-              body:fdata1,
-              headers:
-            {
-                "Content-Type":"multipart/form-data"
-            }
-           })
+          //     body:fdata1,
+             
+          //  }
+          )
            console.warn(result1)
            
            alert(result1.status)
