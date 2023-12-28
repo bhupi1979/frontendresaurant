@@ -42,7 +42,7 @@ export function Maininfra(){
  /**end of infra */
  /**this is for pitemtable */
  const asyncFn1 = async () => {
-    let resultm=  await fetch("https://backendrestaurant-i5ir.onrender.com/showmtable",
+    let resultm=  await fetch("https://backendrestaurant-i5ir.onrender.com/management",
         {
         method:"GET",
         headers:

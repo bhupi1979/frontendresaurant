@@ -266,7 +266,7 @@ let existdivsdatabase=[]
     const handlepitem=(e,item)=>
     {
        // alert(key)
-      console.log(item)
+      alert(item._id)
       e.preventDefault(); 
         const asyncFn = async () => {  
              let result=  await fetch("https://backendrestaurant-i5ir.onrender.com/singleproductdetail/"+item._id,
@@ -278,16 +278,16 @@ let existdivsdatabase=[]
               }
           })
          let resultdata= await result.json()
-          alert(resultdata.id)
+          alert(resultdata._id)
           setresultpitemdetail(resultdata)
           console.warn('result',resultdata)
           console.log(result)
           setqty((prevQty) => ({
             ...prevQty,
-            [resultdata.id]: (prevQty[resultdata.id] || 0) + 1,
+            [resultdata._id]: (prevQty[resultdata._id] || 0) + 1,
           }));
           let finditemincart=  divs.find(i=>{
-            return i.id==resultdata.id
+            return i._id==resultdata._id
           })
          console.warn('the qty',qty)
          
@@ -295,7 +295,7 @@ let existdivsdatabase=[]
           setdivs([...divs,resultdata])
           settamout(tamount+ parseInt(resultdata.price))
           setdivsdatabase((pdivs)=>[...pdivs,{
-            id:resultdata.id,
+            id:resultdata._id,
             name:resultdata.name,
             price:resultdata.price,
             qty1:1,
@@ -305,11 +305,11 @@ let existdivsdatabase=[]
               }
               else{
                 settamout(tamount+ parseInt(resultdata.price))
-                alert('in finiditemcart'+item.id)
+                alert('in finiditemcart'+item._id)
                 setdivsdatabase( (prevDivs) =>
                 prevDivs.map((divItem) =>
-                       divItem.id ==  item.id
-                    ? { ...divItem, qty1: (parseInt(qty[item.id]) || 1) + 1,tamount1:(parseInt(qty[item.id])+1)*item.price,gtamount:tamount } 
+                       divItem.id ==  item._id
+                    ? { ...divItem, qty1: (parseInt(qty[item._id]) || 1) + 1,tamount1:(parseInt(qty[item._id])+1)*item.price,gtamount:tamount } 
                     : divItem
                 
                 )
@@ -366,16 +366,16 @@ let existdivsdatabase=[]
         
        const removecart=(item)=>{
           let newdiv=divs.filter(divitem=>
-            divitem.id!==item.id
+            divitem._id!=item._id
           )
           setqty((prevQty) => ({
             ...prevQty,
-            [item.id]:0,
+            [item._id]:0,
              }));
           setdivs(newdiv)
-          settamout(tamount-parseInt(qty[item.id]*item.price))
+          settamout(tamount-parseInt(qty[item._id]*item.price))
           let newdivdatabase=divsdatabase.filter(divitem=>
-            divitem.id!==item.id
+            divitem._id!=item._id
           )
           setdivsdatabase(newdivdatabase)
           console.warn('thisi sfinal div',newdiv)
@@ -443,8 +443,9 @@ let existdivsdatabase=[]
         
         result= await result.json()
         console.warn('the result is',result)
+        printingqt(str)
         
-        //window.location.reload()
+        window.location.reload()
 //***********pdf print */
 // //  const newWindow = window.open("", "_blank");
 // //  ReactDOM.render(
@@ -468,14 +469,14 @@ let existdivsdatabase=[]
       }
       //elese there is update
       else{
-        console.warn("the propsid",props.divs[0].id)
+        console.warn("the propsid",props.divs[0]._id)
         console.warn('the divs in update',props.divs)
        let divsid= props.divs.filter(tblitem=>
            tblitem.str.split('!')[0]==props.name
                 
          )
-         alert(divsid[0].id)
-        let result= await fetch("http://127.0.0.1:8000/api/updatemanagement/"+divsid[0].id ,
+         alert(divsid[0]._id)
+        let result= await fetch("http://127.0.0.1:8000/api/updatemanagement/"+divsid[0]._id ,
         {
             method:"POST",
             headers: {
@@ -523,7 +524,7 @@ const saveToDatabaseprint = async () => {
   alert('in the database')
   console.warn('the divs the dataabase item',divsdatabase)
   divsdatabase.map((item,id)=>(
-      str+=item.id+'^'+item.name+'^'+item.price+'^'+item.qty1+'^'+item.tamount1+')',
+      str+=item._id+'^'+item.name+'^'+item.price+'^'+item.qty1+'^'+item.tamount1+')',
       grandtotal+=parseInt(item.tamount1)
   ))
   str=str.substring(0,str.length-1)
@@ -593,7 +594,7 @@ const requestData = {
 'str': str, 'datestr': mysqlDateString,
  'printqt': printqt
  };
-  let result= await fetch("http://127.0.0.1:8000/api/managementupdate/"+divsid[0].id,
+  let result= await fetch("http://127.0.0.1:8000/api/managementupdate/"+divsid[0]._id,
   {
       method:"POST",
       headers: {
@@ -712,20 +713,20 @@ printWindow.print()
                          </thead>
                          <tbody> 
                         { divs?divs.map((item,key)=>(<tr key={key} >
-                        <td onClick={()=>handleplus(item.id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                        <td onClick={()=>handleplus(item._id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
 </svg></td>
-                        <td >{Number(qty[item.id])}</td>
-                        <td  onClick={()=>handleminus(item.id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square" viewBox="0 0 16 16">
+                        <td >{Number(qty[item._id])}</td>
+                        <td  onClick={()=>handleminus(item._id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square" viewBox="0 0 16 16">
   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
   <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
 </svg></td>
                             
                             <td>{item.name}</td>
                             <td>{item.price}</td>
-                            <td>{Number(qty[item.id])}</td>
-                            <td>{item.price*Number((qty[item.id]))}</td>
+                            <td>{Number(qty[item._id])}</td>
+                            <td>{item.price*Number((qty[item._id]))}</td>
                             <td><button className="btn btn-danger btn-sm" onClick={()=>removecart(item)}>remove</button></td>
                         </tr>)):'No item in cart'}
                         <tr><td></td><td></td><td></td><td></td><td></td><td>totalamount</td><td>{tamount}</td></tr>
@@ -748,20 +749,20 @@ printWindow.print()
                          </thead>
                          <tbody>
                         { divs?divs.map((item,key)=>(<tr key={key}>
-                        <td onClick={()=>handleplus(item.id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                        <td onClick={()=>handleplus(item._id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
 </svg></td>
                         <td >{qty[item.id]}</td>
-                        <td  onClick={()=>handleminus(item.id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square" viewBox="0 0 16 16">
+                        <td  onClick={()=>handleminus(item._id,item)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square" viewBox="0 0 16 16">
   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
   <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
 </svg></td>
                             
                             <td>{item.name}</td>
                             <td>{item.price}</td>
-                            <td>{qty[item.id]}</td>
-                            <td>{item.price*qty[item.id]}</td>
+                            <td>{qty[item._id]}</td>
+                            <td>{item.price*qty[item._id]}</td>
                             <td><button className="btn btn-danger btn-sm" onClick={()=>removecart(item)}>remove</button></td>
                         </tr>)):'No item in cart'}
                         <tr><td></td><td></td><td></td><td></td><td></td><td>totalamount</td><td>{tamount}</td></tr>
@@ -779,7 +780,7 @@ printWindow.print()
                                 {resultcat.map((item,id)=>(<option value={item._id}>{item.name}</option>))}
                             </select>
                             
-                                {resultpitem?resultpitem.map((item)=>(<button className="btn btn-warning mt-2 me-2" key={item.id} onClick={(e)=>handlepitem(e,item)} >{item.name}</button>)):null}
+                                {resultpitem?resultpitem.map((item)=>(<button className="btn btn-warning mt-2 me-2" key={item._id} onClick={(e)=>handlepitem(e,item)} >{item.name}</button>)):null}
                             
                         </form>
                         
