@@ -14,19 +14,19 @@ export function Home(){
             alert("Please select first date previous to next date input")
         }
         else{
-            const fdata={date1:d1,date2:d2}
+            
             const asyncFn = async () => {
-                let result=  await fetch("https://backendrestaurant-i5ir.onrender.com/managementsale",
+                let result=  await fetch(`https://backendrestaurant-i5ir.onrender.com/managementsale`,
                     {
-                    method:"Post",
-                    body:JSON.stringify(fdata),
+                    method:"get",
+                    
                     headers:
                     {
                         "Content-Type":"application/json"
                     }
                 })
                 result= await result.json()
-        
+        alert(result.datestr)
                 setresult(result)
                 console.warn('result',result)
                 console.log(result)
@@ -51,7 +51,7 @@ export function Home(){
                             <br/><br/>
                             <button type="submit" className="btn btn-primary" onClick={HandleClick}>Show-Report</button>
                         </form>
-                        {data?data.map((item,id)=>(<div>{item.str}</div>)  ):null}
+                        {data?data.map((item,id)=><div><h1>this is date***</h1>{item.datestr}</div>):null}
                     </div>
                 </div>
             </div>
