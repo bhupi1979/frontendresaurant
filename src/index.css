@@ -6,4 +6,4 @@ ul li:last-child a{border-right-style:none;}
 .form-control span{color:red;font-size: 1rem;}
 .msg{color:red;font-size: 2rem;}
 .spinner{position: absolute;left:45%;top:40%;}
-body{background-color: rgb(238, 229, 229);}
+#root{background-color: rgb(177, 135, 135);min-height: 800px;}

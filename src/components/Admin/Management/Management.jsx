@@ -91,7 +91,7 @@ let existdivsdatabase=[]
       //   tamount1:resultdata.price,
       //   gtamount:tamount
       // }])
-      let existdivdatabase={id:newid[i],name:nameexist[i],price:priceexist[i],qty1:parseInt(totalqty[i]),tamount1:parseInt(totalqty[i])*parseInt(priceexist[i])}
+      let existdivdatabase={_id:newid[i],name:nameexist[i],price:priceexist[i],qty1:parseInt(totalqty[i]),tamount1:parseInt(totalqty[i])*parseInt(priceexist[i])}
       existdivsdatabase.push(existdivdatabase)
     // setqty((prevQty) =>  ({
     //            ...prevQty,
@@ -524,7 +524,7 @@ const saveToDatabaseprint = async () => {
   alert('in the database')
   console.warn('the divs the dataabase item',divsdatabase)
   divsdatabase.map((item,id)=>(
-      str+=item._id+'^'+item.name+'^'+item.price+'^'+item.qty1+'^'+item.tamount1+')',
+      str+=item._id+'^'+item.name+'^'+item.price+'^'+item.qty1+'^'+ parseInt(item.tamount1)+')',
       grandtotal+=parseInt(item.tamount1)
   ))
   str=str.substring(0,str.length-1)
@@ -587,6 +587,7 @@ else{
          
   )
   alert(divsid[0]._id)
+  alert(str)
    let jsDate=new Date()
  const mysqlDateString = jsDate.toLocaleString();
 let printqt=1
