@@ -254,7 +254,7 @@ let existdivsdatabase=[]
            }
        })
        result= await result.json()
-       alert(result)
+       //alert(result)
        setresultpitem(result)
        console.warn('result',result)
        console.log(result)
