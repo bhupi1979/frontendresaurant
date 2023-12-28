@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import  ReactDOM  from "react-dom"
-import { Qtpdf } from "./Qtpdf"
+
 import jsPDF from "jspdf"
 
 export function Management(props){
@@ -254,7 +254,7 @@ let existdivsdatabase=[]
            }
        })
        result= await result.json()
-       //alert(result)
+       alert(result)
        setresultpitem(result)
        console.warn('result',result)
        console.log(result)
@@ -593,7 +593,7 @@ const requestData = {
 'str': str, 'datestr': mysqlDateString,
  'printqt': printqt
  };
-  let result= await fetch("http://127.0.0.1:8000/api/managementupdate/"+divsid[0].id+ "?_method=PUT",
+  let result= await fetch("http://127.0.0.1:8000/api/managementupdate/"+divsid[0].id,
   {
       method:"POST",
       headers: {
@@ -776,7 +776,7 @@ printWindow.print()
                         <form className="form-control">
                             <select name="pcategory" id="pcategory" className="form-control" onClick={selectPitem}>
                                 <option value={0}>SELECT category</option>
-                                {resultcat.map((item,id)=>(<option value={item.id}>{item.name}</option>))}
+                                {resultcat.map((item,id)=>(<option value={item._id}>{item.name}</option>))}
                             </select>
                             
                                 {resultpitem?resultpitem.map((item)=>(<button className="btn btn-warning mt-2 me-2" key={item.id} onClick={(e)=>handlepitem(e,item)} >{item.name}</button>)):null}
