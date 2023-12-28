@@ -22,6 +22,8 @@ const [price,setprice]=useState("")
 const [descp,setdescp]=useState("")
 const [pcategory,setpcategory]=useState("")
 const [errors, setErrors] = useState({});
+
+let resultpitem
 async function addproductcategoryitem(){
     
             
@@ -92,7 +94,7 @@ async function addproductcategoryitem(){
 
 //THis is all product item show
 const asyncFn1 = async () => {
-    let resultpitem=  await fetch("https://backendrestaurant-i5ir.onrender.com/showproductcategory",
+     resultpitem=  await fetch("https://backendrestaurant-i5ir.onrender.com/showproductcategory",
     {
 method:"GET",
 headers:
@@ -113,8 +115,11 @@ asyncFn1();
          },[])
          const filteredData = data.filter(item =>
             item.name.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-      
+          )
+          const getProductCategoryName = (id) => {
+            const category = datapitem.find(item => item._id === id);
+            return category ? category.name : "Unknown Category";
+          }
           const columns = [
             {
               name: 'ID',
@@ -122,7 +127,7 @@ asyncFn1();
             },
             {
               name: 'Product-Category',
-              selector: (row)=>row.pcategory,
+              cell:(row)=>getProductCategoryName(row.pcategory),
               sortable: true,
             },
             {

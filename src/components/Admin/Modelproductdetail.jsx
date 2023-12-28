@@ -18,7 +18,7 @@ export function Modelpitem(props){
        seteditimg(props.updatedata1.image)
        seteditdescp(props.updatedata1.descp)
        
-       console.log(props.updatedata1.image)
+       //alert(props.updatedata1.image)
      
        const asyncFn1 = async () => {
         let resultpitemedit=  await fetch("https://backendrestaurant-i5ir.onrender.com/showproductcategory",
@@ -41,22 +41,22 @@ export function Modelpitem(props){
   
     async function updatepitem(){
        const fdata1=new FormData()
-       fdata1.append('editname',editname||props.updatedata1.name);
-        fdata1.append('editprice',editprice||props.updatedata1.price);
-        fdata1.append('editimg',editimg||props.updatedata1.image);
-        fdata1.append('editdescp',editdescp||props.updatedata1.descp);
-        fdata1.append('editpcategory',editpcategory ||props.updatedata1.pcategory)
-        alert("this is update alert"+props.updatedata1._id)
+       fdata1.append('name',editname||props.updatedata1.name);
+        fdata1.append('price',editprice||props.updatedata1.price);
+        fdata1.append('image',editimg||props.updatedata1.image);
+        fdata1.append('descp',editdescp||props.updatedata1.descp);
+        fdata1.append('pcategory',editpcategory ||props.updatedata1.pcategory)
+      //  alert("this is update alert"+props.updatedata1._id)
            
         
-        let result1= await axios.put(`https://backendrestaurant-i5ir.onrender.com/productdetail/${props.updatedata1._id}`,
-        fdata1
-          //  {
-          //      method:"PUT",
+        let result1= await fetch(`https://backendrestaurant-i5ir.onrender.com/productdetail/${props.updatedata1._id}`,
+        
+           {
+               method:"PUT",
               
-          //     body:fdata1,
+              body:fdata1,
              
-          //  }
+            }
           )
            console.warn(result1)
            
