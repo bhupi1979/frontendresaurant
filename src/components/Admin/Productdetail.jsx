@@ -147,7 +147,7 @@ asyncFn1();
               },
               {
                 name: 'Image',
-                cell:(row)=>(<img src={`https://backendrestaurant-i5ir.onrender.com/uploads/${row.image}`} alt="img" width={'100rem'} height={'100rem'}/>),
+                cell:(row)=>(<img src={`https://backendrestaurant-i5ir.onrender.com/${row.image}`} alt="img" width={'100rem'} height={'100rem'}/>),
                 sortable: true,
               },
             {
