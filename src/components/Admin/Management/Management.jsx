@@ -81,7 +81,7 @@ let existdivsdatabase=[]
 //alert(newid.length)
     for(i=0;i<newid.length;i++)
     {
-      let existdiv={'id':newid[i],'name':nameexist[i],'price':priceexist[i]}
+      let existdiv={'_id':newid[i],'name':nameexist[i],'price':priceexist[i]}
       existdivs.push(existdiv)
       // setdivsdatabase((pdivs)=>[...pdivs,{
       //   id:resultdata.id,
@@ -220,8 +220,8 @@ let existdivsdatabase=[]
       if (newid.length > 0) {
        // alert(newid.length)
         // Create an object from newid and totalqty arrays
-        const qtyObject = newid.reduce((acc, id, index) => {
-          acc[id] = parseInt(totalqty[index]);
+        const qtyObject = newid.reduce((acc, _id, index) => {
+          acc[_id] = parseInt(totalqty[index]);
           //let existdivdatabase={id:newid[i],name:nameexist[i],price:priceexist[i]}
           //console.warn('the acc',acc)
           return acc;
@@ -295,7 +295,7 @@ let existdivsdatabase=[]
           setdivs([...divs,resultdata])
           settamout(tamount+ parseInt(resultdata.price))
           setdivsdatabase((pdivs)=>[...pdivs,{
-            id:resultdata._id,
+            _id:resultdata._id,
             name:resultdata.name,
             price:resultdata.price,
             qty1:1,
@@ -308,7 +308,7 @@ let existdivsdatabase=[]
                 alert('in finiditemcart'+item._id)
                 setdivsdatabase( (prevDivs) =>
                 prevDivs.map((divItem) =>
-                       divItem.id ==  item._id
+                       divItem._id ==  item._id
                     ? { ...divItem, qty1: (parseInt(qty[item._id]) || 1) + 1,tamount1:(parseInt(qty[item._id])+1)*item.price,gtamount:tamount } 
                     : divItem
                 
@@ -333,8 +333,8 @@ let existdivsdatabase=[]
                  settamout(tamount+ parseInt(item.price))
                  setdivsdatabase( (prevDivs) =>
                       prevDivs.map((divItem) =>
-                       divItem.id === itemId
-                          ? { ...divItem, qty1: (qty[itemId] || 1) + 1,tamount1:(qty[item.id]+1)*item.price,gtamount:tamount } 
+                       divItem._id == itemId
+                          ? { ...divItem, qty1: (qty[itemId] || 1) + 1,tamount1:(qty[item._id]+1)*item.price,gtamount:tamount } 
                           : divItem
                       
                       )
@@ -352,7 +352,7 @@ let existdivsdatabase=[]
               settamout(tamount-parseInt(item.price))
               setdivsdatabase( (prevDivs) =>
                       prevDivs.map((divItem) =>
-                       divItem.id === itemId
+                       divItem._id === itemId
                           ? { ...divItem, qty1: (qty[itemId] || 1) - 1,tamount1:(qty[itemId]-1)*item.price,gtamount:tamount } 
                           : divItem
                       
@@ -388,7 +388,7 @@ let existdivsdatabase=[]
         alert('in the database')
         console.warn('the divs the dataabase item',divsdatabase)
         divsdatabase.map((item,id)=>(
-            str+=item.id+'^'+item.name+'^'+item.price+'^'+item.qty1+'^'+item.tamount1+')',
+            str+=item._id+'^'+item.name+'^'+item.price+'^'+item.qty1+'^'+item.tamount1+')',
             grandtotal+=parseInt(item.tamount1)
         ))
         str=str.substring(0,str.length-1)
@@ -476,9 +476,9 @@ let existdivsdatabase=[]
                 
          )
          alert(divsid[0]._id)
-        let result= await fetch("http://127.0.0.1:8000/api/updatemanagement/"+divsid[0]._id ,
+        let result= await fetch("https://backendrestaurant-i5ir.onrender.com/updatemanagement/"+divsid[0]._id ,
         {
-            method:"POST",
+            method:"put",
             headers: {
                       'Content-Type': 'application/json',
                    },
@@ -586,7 +586,7 @@ else{
     tblitem.str.split('!')[0]==props.name
          
   )
-  alert(divsid[0].id)
+  alert(divsid[0]._id)
    let jsDate=new Date()
  const mysqlDateString = jsDate.toLocaleString();
 let printqt=1
@@ -594,9 +594,9 @@ const requestData = {
 'str': str, 'datestr': mysqlDateString,
  'printqt': printqt
  };
-  let result= await fetch("http://127.0.0.1:8000/api/managementupdate/"+divsid[0]._id,
+  let result= await fetch("https://backendrestaurant-i5ir.onrender.com/updatemanagement/"+divsid[0]._id,
   {
-      method:"POST",
+      method:"put",
       headers: {
                 'Content-Type': 'application/json',
              },
