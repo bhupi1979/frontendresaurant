@@ -697,7 +697,7 @@ printWindow.print()
                 <div className="row">
                     <div className="col-lg-8">
                         <div className="infraname">
-                        <h1 className="text-center bg-warning">this is management</h1>
+                        <h1 className="text-center bg-warning">THIS IS MANAGMENT</h1>
                         {props.divs.length!=0?<>
                        <h2 className="text-center bg-info">{props.name}</h2>
                        <table className=" table table-responsive bg-info table-hover">
