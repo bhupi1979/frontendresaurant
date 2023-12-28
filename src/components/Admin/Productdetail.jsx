@@ -28,6 +28,7 @@ async function addproductcategoryitem(){
     
             
             //const fdata={name:name,price:price,image:image,descp:descp,pcategory:pcategory}
+            if (validateForm()) {
             const fdata=new FormData()
             fdata.append('name',name)
              fdata.append('price',price)
@@ -62,7 +63,7 @@ async function addproductcategoryitem(){
                     }
                     
                  }
-    
+                }
     
           //*****************for listion of infra list section of get method of table data */       
           useEffect(()=>{const asyncFn = async () => {  
@@ -251,7 +252,37 @@ asyncFn1();
     asyncFn1()
     }
       
+/***********validataion  */
+const validateForm = () => {
+  let isValid = true;
+  const newErrors = {};
 
+  // Name Validation
+  if (!name.trim()) {
+    isValid = false;
+    newErrors.name = 'Name is required';
+  }
+  if (!pcategory) {
+    isValid = false;
+    newErrors.pcategory = 'category is required';
+  }
+  if (!price.trim()) {
+    isValid = false;
+    newErrors.price = 'Price is required';
+  }
+  if (!image) {
+    isValid = false;
+    newErrors.image = 'image is required';
+  }
+  if (!descp.trim()) {
+    isValid = false;
+    newErrors.descp = 'Description is required';
+  }
+
+  setErrors(newErrors)
+      return isValid
+}
+/*********validation ends herer */
 
 
 
@@ -263,29 +294,35 @@ asyncFn1();
             <div className="container">
                 <div className="row">
                     <div className="col-lg-5">
-                        <h1>Product-category-ITEM</h1>
+                        <h1 className="text-uppercase">Product category ITEM</h1>
                         <h3 style={{color:'red',background:'yellow'}} className="text-center">{msg2}</h3>
  
                     <form className="form-control" id="pform" method="post" onSubmit={(e)=>{e.preventDefault()}}>
                     <select className="w-100 mt-1" name="pcategory"  onChange={(e)=>{setpcategory(e.target.value)}} ><option value={0}>SELECT-CATEGORY</option>SELECT-CATEGORY 
                     {datapitem.map((item,id)=>(<option value={item._id}>{item.name}</option>))}
                     </select>
+                    {errors.pcategory && <span>{errors.pcategory}</span>}
                         <input className="form-control mt-1" type="text" name="name"  onChange={(e)=>{setname(e.target.value)}}  placeholder="Enter name"></input>
+                        {errors.name && <span>{errors.name}</span>}
                         <input className="form-control mt-1" type="number" id="price" name="price"  onChange={(e)=>{setprice(e.target.value) }} placeholder="Enter Price"></input>
+                        {errors.price && <span>{errors.price}</span>}
                         <input className="form-control mt-1" type="file" name="image"  onChange={(e)=>{setimg(e.target.files[0]) }} placeholder="Enter a image"/>
+                        {errors.image && <span>{errors.image}</span>}
                         {/* <input className="form-control mt-1" type="text" name="rent" value={rent} onChange={(e)=>{setrent(e.target.value)}} placeholder="Enter rent"></input>*/}
                         <textarea className="form-control mt-1 mb-2" name="descp" value={descp} onChange={(e)=>{setdescp(e.target.value)}} placeholder="Enter Description"></textarea>
+                        {errors.descp && <span>{errors.descp}</span>}
+                        <br/>
                         <button type="submit" className="btn btn-primary mt-2 w-100" onClick={addproductcategoryitem}>Add-Product-item-detail</button> 
                     </form>
                     </div>
                     <div className="col-lg-7">
-                        <h1 className="text-center">The Product-Category_ITem_Detail</h1>
+                        <h1 className="text-center text-uppercase">The Product Category ITem Detail</h1>
                         <CSVLink data={data} filename={"data.csv"}>
-                        <button>ExportCSV</button>
+                        <button className="p-1">ExportCSV</button>
                     </CSVLink>
-                    <button onClick={handlePrint}>ExportPdf</button>
+                    <button className="p-1" onClick={handlePrint}>ExportPdf</button>
 
-                    <button onClick={handlePrint1}>PRint</button>
+                    <button className="p-1" onClick={handlePrint1}>PRint</button>
                         {data?<div style={{ display: 'block' }} ref={componentRef} >
       
       <DataTable
