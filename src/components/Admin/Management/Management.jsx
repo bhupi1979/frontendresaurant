@@ -334,7 +334,7 @@ let existdivsdatabase=[]
                  setdivsdatabase( (prevDivs) =>
                       prevDivs.map((divItem) =>
                        divItem._id == itemId
-                          ? { ...divItem, qty1: (qty[itemId] || 1) + 1,tamount1:(qty[item._id]+1)*item.price,gtamount:tamount } 
+                          ? { ...divItem, qty1: (qty[itemId] || 1) + 1,tamount1:(qty[itemId]+1)*item.price,gtamount:tamount } 
                           : divItem
                       
                       )
