@@ -48,7 +48,7 @@ export function Home(){
                 })
            
                 result= await result.json()
-                 filteredResults = await result.filter(item =>  (new Date(item.datestr)>=d1 && new Date(item.datestr))<=d2)
+                 filteredResults =  result.filter(item =>  (new Date(item.datestr)>=d1 && new Date(item.datestr)<=d2))
                
                 setresult(filteredResults)
                 console.warn('result',filteredResults)
