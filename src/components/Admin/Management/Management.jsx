@@ -633,7 +633,7 @@ else{
 function printingqt(str){
   const doc = new jsPDF({
     unit: "mm",
-format: [80, 160]
+format: [80, 500]
 });
 doc.setFontSize(14)
 doc.text("Welcome To Saksham Restaurant", 2, 10);

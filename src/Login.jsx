@@ -37,7 +37,7 @@ export function Login(){
           headers:{ 'Content-Type':'Application/json'}
       })
       result=await result.json()
-      //alert(result.resultuser)
+      setisloading(false)
       if(result.resultuser)
       {
       console.log('Form is valid. Submitting:', formdata);
