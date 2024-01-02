@@ -79,7 +79,7 @@ export function Home(){
         
         
           doc.setFontSize(20)
-          doc.text("Saksham Restaurant",75, 20);
+          doc.text("Saksham Restaurant",75,20);
           doc.line(1,21,210,21)
           doc.setFontSize(14)
           const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
@@ -108,10 +108,7 @@ nstr=`${nstr[1]}/${nstr[0]}/${nstr[2]}`
         //alert("mainstrnew"+strnew.length)
         for ( j=0;j<strnew.length;j++)
         { 
-             if((y)>210)
-             {doc.addPage()
-                y=0
-             }
+            
             doc.line(1,35+y,210,35+y)
             y=y+5
             doc.text(`MODE:-${strnew[j].split('!')[0]}`,75,35+y)
@@ -143,12 +140,17 @@ nstr=`${nstr[1]}/${nstr[0]}/${nstr[2]}`
                 doc.text(str[i].split('^')[4], totalAmountX, 35+y);
           
                 y+= 8; // Adjust the vertical position for the next item
+                if((y)>250)
+                {doc.addPage()
+                   y=0
+                }
              }
              doc.line(1,35+y,210,35+y)
              y=y+5
              doc.text(`Grandtoal:-${gtotal}`,155,35+y)
              y=y+5
              doc.line(1,35+y,210,35+y)
+             
         }
        
        }
